@@ -7,7 +7,8 @@ function Popup({open, close, setPopup, message, title, callback}) {
   const [car_name, set_car_name] = useState("K7");
   const [users, set_users] = useState("");
   const [start, set_start] = useState("");
-  //const [end, set_end] = useState("");
+  const [time, set_time] = useState("하루종일");
+  const [dest, set_dest] = useState("카트리");
   const [all_ok, set_all_ok] = useState(false);
 
   const is_ok = (e) => {
@@ -20,10 +21,10 @@ function Popup({open, close, setPopup, message, title, callback}) {
       alert("사용일을 입력해주세요");
       return false
     }
-    else if(window.confirm(`차종: ${car_name} 사용자: ${users} 사용일: ${start}가 맞는지 다시 한번 확인해주세요`)){
+    else if(window.confirm(`차종: ${car_name}\n탑승자: ${users}\n사용일: ${start}\n정보가 맞는지 다시 한번 확인해주세요`)){
       const event_data = {
         title: car_name,
-        display: users,
+        display: `탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}`,
         start: new Date(start),
         //end: new Date(end)
       };
@@ -56,13 +57,25 @@ function Popup({open, close, setPopup, message, title, callback}) {
             </select>
               <input
                 type="string"
-                placeholder="사용자명을 입력하세요"
+                placeholder="탑승자를 입력하세요"
                 onChange={(e)=>{set_users(e.target.value)}}
                 name='users'
               />
               <input
+                type="string"
+                placeholder="목적지를 입력하세요"
+                onChange={(e)=>{set_dest(e.target.value)}}
+                name='dest'
+              />
+              <input
+                type="string"
+                placeholder="사용시간을 입력하세요"
+                onChange={(e)=>{set_time(e.target.value)}}
+                name='time'
+              />
+              <input
                 type="Date"
-                placeholder="사용일을 입력하세요"
+                placeholder="사용일을 선택하세요"
                 onChange={(e)=>{set_start(e.target.value)}}
                 name='start'
               />

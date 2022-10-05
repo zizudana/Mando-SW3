@@ -34,6 +34,7 @@ function Calendar() {
     plugins={[dayGridPlugin, interactionPlugin]}
     editable
     selectable
+    displayEventTime={false}
     eventClick={handleEventClick}
     events={event_data}
     customButtons={{myCustomButton: {text: '차량예약하기',
@@ -47,7 +48,7 @@ function Calendar() {
     }
   }}
 }
-    headerToolbar={{left: 'prev,next today',
+    headerToolbar={{left: ' today',
     center: 'title',
     right: 'myCustomButton prev,next'}}
   />
