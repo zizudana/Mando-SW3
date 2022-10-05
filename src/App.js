@@ -48,7 +48,7 @@ function Calendar() {
     }
   }}
 }
-    headerToolbar={{left: ' today',
+    headerToolbar={{left: 'today',
     center: 'title',
     right: 'myCustomButton prev,next'}}
   />
