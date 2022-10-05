@@ -21,7 +21,7 @@ function Popup({open, close, setPopup, message, title, callback}) {
       alert("사용일을 입력해주세요");
       return false
     }
-    else if(window.confirm(`차종: ${car_name}\n탑승자: ${users}\n사용일: ${start}\n예약하시나요?`)){
+    else if(window.confirm(`차종: ${car_name}\n탑승자: ${users}\n목적지: ${dest}\n사용일: ${start}\n예약하시나요?`)){
       const event_data = {
         title: car_name,
         display: `탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}`,

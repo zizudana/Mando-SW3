@@ -37,7 +37,7 @@ function Calendar() {
     displayEventTime={false}
     eventClick={handleEventClick}
     events={event_data}
-    customButtons={{myCustomButton: {text: '차량예약하기',
+    customButtons={{eventAddButton: {text: '차량예약하기',
     click: function() {
       setPopup({
         open: true,
@@ -46,11 +46,14 @@ function Calendar() {
       });
       return;
     }
-  }}
+  }, 
+  eventDeleteButton: {text: '예약취소하기', click: function() {
+    alert("관리자에게 문의해주세요");
+  }}}
 }
-    headerToolbar={{left: 'today',
+    headerToolbar={{left: 'today eventDeleteButton',
     center: 'title',
-    right: 'myCustomButton prev,next'}}
+    right: 'eventAddButton prev,next'}}
   />
   </>
   )
