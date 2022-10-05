@@ -28,7 +28,8 @@ function Popup({open, close, setPopup, message, title, callback}) {
         start: new Date(start),
         //end: new Date(end)
       };
-      axios.post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data,{
+      axios.post("https://shrouded-headland-42492.herokuapp.com/events/add",JSON.stringify(event_data),{
+        'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
     }, );
     window.location.href = "/"
