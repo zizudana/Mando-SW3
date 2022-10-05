@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'
 import Popup from './components/popup';
 import axios from 'axios';
+import './index.css';
 
 function Calendar() {
   const [event_data, set_event_data] = useState([]);
@@ -38,6 +39,9 @@ function Calendar() {
     contentHeight={600}
     eventClick={handleEventClick}
     events={event_data}
+    titleFormat={function(date) {
+      return `${date.date.year}년 ${date.date.month + 1}월`;
+    }}
     customButtons={{eventAddButton: {text: '차량예약하기',
     click: function() {
       setPopup({
