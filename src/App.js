@@ -35,6 +35,7 @@ function Calendar() {
     editable
     selectable
     displayEventTime={false}
+    contentHeight={600}
     eventClick={handleEventClick}
     events={event_data}
     customButtons={{eventAddButton: {text: '차량예약하기',
