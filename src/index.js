@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Calendar from './app';
+import Calendar from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
