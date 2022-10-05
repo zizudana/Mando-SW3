@@ -2,7 +2,6 @@
   "name": "car-front-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zizudana.github.io",
   "dependencies": {
     "@fullcalendar/daygrid": "^5.11.3",
     "@fullcalendar/react": "^5.11.2",
@@ -23,8 +22,7 @@
     "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
