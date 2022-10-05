@@ -57,25 +57,25 @@ function Popup({open, close, setPopup, message, title, callback}) {
             </select>
               <input
                 type="string"
-                placeholder="탑승자를 입력하세요"
+                placeholder="탑승자 입력"
                 onChange={(e)=>{set_users(e.target.value)}}
                 name='users'
               />
               <input
                 type="string"
-                placeholder="목적지를 입력하세요"
+                placeholder="목적지 입력"
                 onChange={(e)=>{set_dest(e.target.value)}}
                 name='dest'
               />
               <input
                 type="string"
-                placeholder="사용시간을 입력하세요(선택사항)"
+                placeholder="사용시간 입력(선택사항)"
                 onChange={(e)=>{set_time(e.target.value)}}
                 name='time'
               />
               <input
                 type="Date"
-                placeholder="사용일을 선택하세요"
+                placeholder="사용일 선택"
                 onChange={(e)=>{set_start(e.target.value)}}
                 name='start'
               />
