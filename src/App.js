@@ -51,9 +51,9 @@ function Calendar() {
     alert("관리자에게 문의해주세요");
   }}}
 }
-    headerToolbar={{left: 'today eventDeleteButton',
+    headerToolbar={{left: 'eventDeleteButton',
     center: 'title',
-    right: 'eventAddButton prev,next'}}
+    right: 'eventAddButton today prev,next'}}
   />
   </>
   )
