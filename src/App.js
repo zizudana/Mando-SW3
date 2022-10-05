@@ -62,7 +62,7 @@ function Calendar() {
 function handleEventClick(info) { // bind with an arrow function
   alert(info.event.title + '\n' + info.event.display);
   // change the border color just for fun
-  info.el.style.backgroundColor = 'red';
+  info.el.style.backgroundColor = 'green';
 }
 
 export default Calendar;
