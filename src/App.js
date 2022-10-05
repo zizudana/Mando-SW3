@@ -52,9 +52,9 @@ function Calendar() {
     alert("관리자에게 문의해주세요");
   }}}
 }
-    headerToolbar={{left: 'eventDeleteButton',
-    center: 'title',
-    right: 'eventAddButton today prev,next'}}
+    headerToolbar={{left: 'today eventDeleteButton',
+    center: 'prev title next',
+    right: 'eventAddButton today'}}
   />
   </>
   )
