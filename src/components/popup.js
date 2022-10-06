@@ -3,13 +3,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import './modal.css';
 
-function Popup({open, close, setPopup, message, title, callback}) {
+function Popup({date, open, close, setPopup, message, title, callback}) {
   const [car_name, set_car_name] = useState("K7");
   const [users, set_users] = useState("");
-  const [start, set_start] = useState("");
   const [time, set_time] = useState("하루종일");
   const [dest, set_dest] = useState("");
   const [all_ok, set_all_ok] = useState(false);
+  const mydate = new Date(date)
 
   const is_ok = (e) => {
     e.preventDefault()
@@ -17,22 +17,19 @@ function Popup({open, close, setPopup, message, title, callback}) {
       alert("사용자명을 입력해주세요");
       return false
     }
-    if (start.length === 0){
-      alert("사용일을 입력해주세요");
-      return false
-    }
-    else if(window.confirm(`차종: ${car_name}\n탑승자: ${users}\n목적지: ${dest}\n사용일: ${start}\n예약하시나요?`)){
+    else if(window.confirm(`차종: ${car_name}\n사용일: ${mydate.toLocaleDateString()}\n탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}\n예약하시나요?`)){
       const event_data = {
         title: car_name,
         display: `탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}`,
-        start: new Date(start),
-        //end: new Date(end)
+        //start: new Date(start),
+        start: mydate
       };
-      axios.post("https://shrouded-headland-42492.herokuapp.com/events/add",JSON.stringify(event_data),{
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-    }, );
-    window.location.href = "/"
+      axios
+        .post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data)
+        .then(response => {
+          console.log("response",response.data)
+          window.location.href = "/"
+        });
   }
   }
 
@@ -54,7 +51,7 @@ function Popup({open, close, setPopup, message, title, callback}) {
           <main>< form id='addEvent'>
               <select name="car_name" form="addEvent" onChange={(e)=>{set_car_name(e.target.value)}}>
                 <option value="K7">K7</option>
-                <option value="K9">트랙스</option>
+                <option value="TRAX">TRAX</option>
             </select>
               <input
                 type="string"
@@ -73,12 +70,6 @@ function Popup({open, close, setPopup, message, title, callback}) {
                 placeholder="사용시간 입력(선택사항)"
                 onChange={(e)=>{set_time(e.target.value)}}
                 name='time'
-              />
-              <input
-                type="Date"
-                placeholder="사용일 선택"
-                onChange={(e)=>{set_start(e.target.value)}}
-                name='start'
               />
               < input type='submit' onClick={(e)=>{handleSubmit(e)}}/>
             </form ></main>

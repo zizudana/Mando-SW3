@@ -9,7 +9,7 @@ import './index.css';
 function Calendar() {
   const [event_data, set_event_data] = useState([]);
   const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
-
+  const [date, setDate] = useState("");
   useEffect(()=>{
     async function readEvent() {
       //const url = "http://localhost:1323/events/all";
@@ -30,7 +30,7 @@ function Calendar() {
 
   return (
     <>
-    <Popup open = {popup.open} close={closePopup} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
+    <Popup date = {date} open = {popup.open} close={closePopup} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
     <FullCalendar
     plugins={[dayGridPlugin, interactionPlugin]}
     editable
@@ -38,6 +38,15 @@ function Calendar() {
     displayEventTime={false}
     contentHeight={600}
     eventClick={handleEventClick}
+    dateClick={function(info){
+      setDate(info.date);
+      setPopup({
+        open: true,
+        title: "차량 예약하기",
+        message: "차종과 사용자명을 입력해주세요."
+      });
+      return;
+    }}
     events={event_data}
     titleFormat={function(date) {
       return `${date.date.year}년 ${date.date.month + 1}월`;
@@ -52,13 +61,13 @@ function Calendar() {
       return;
     }
   }, 
-  eventDeleteButton: {text: '예약취소하기', click: function() {
+  eventDeleteButton: {text: '예약취소', click: function() {
     alert("관리자에게 문의해주세요");
   }}}
 }
-    headerToolbar={{left: 'today eventDeleteButton',
+    headerToolbar={{left: 'eventDeleteButton',
     center: 'prev title next',
-    right: 'eventAddButton today'}}
+    right: 'today'}}
   />
   </>
   )
