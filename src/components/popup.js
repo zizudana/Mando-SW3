@@ -26,7 +26,7 @@ function Popup({date, open, close, setPopup, message, title, callback}) {
         start: mydate
       };
       axios
-        post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data)
+        .post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data)
         //.post("http://localhost:1323/events/add",event_data)
         .then(response => {
           console.log("response",response.data)
