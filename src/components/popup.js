@@ -19,13 +19,15 @@ function Popup({date, open, close, setPopup, message, title, callback}) {
     }
     else if(window.confirm(`차종: ${car_name}\n사용일: ${mydate.toLocaleDateString()}\n탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}\n예약하시나요?`)){
       const event_data = {
+        id : `${mydate.getTime()}${car_name}`,
         title: car_name,
         display: `탑승자: ${users}\n목적지: ${dest}\n사용시간: ${time}`,
         //start: new Date(start),
         start: mydate
       };
       axios
-        .post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data)
+        post("https://shrouded-headland-42492.herokuapp.com/events/add",event_data)
+        //.post("http://localhost:1323/events/add",event_data)
         .then(response => {
           console.log("response",response.data)
           window.location.href = "/"

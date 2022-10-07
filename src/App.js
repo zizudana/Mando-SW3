@@ -65,7 +65,7 @@ function Calendar() {
     alert("관리자에게 문의해주세요");
   }}}
 }
-    headerToolbar={{left: 'eventDeleteButton',
+    headerToolbar={{left: '',
     center: 'prev title next',
     right: 'today'}}
   />
@@ -74,9 +74,18 @@ function Calendar() {
 }
 
 function handleEventClick(info) { // bind with an arrow function
-  alert(info.event.title + '\n' + info.event.display);
+  //alert(info.event.title + '\n' + info.event.display);
   // change the border color just for fun
-  info.el.style.backgroundColor = 'green';
+  //info.el.style.backgroundColor = 'green';
+  //axios.delete(`https://shrouded-headland-42492.herokuapp.com/events/${info.event.id}`)
+  //const param = {id:info.event.id};
+  if (window.confirm(`${info.event.title}\n${info.event.display}\n예약을 취소하시나요?`))
+  {
+    axios
+    //.delete(`http://localhost:1323/events/${info.event.id}`)
+    .delete(`https://shrouded-headland-42492.herokuapp.com/events/${info.event.id}`)
+    .then(res => {window.location.href = "/"});
+  }
 }
 
 export default Calendar;
