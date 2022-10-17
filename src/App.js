@@ -3,13 +3,16 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'
 import Popup from './components/popup';
+import Eopup from './components/epopup';
 import axios from 'axios';
 import './index.css';
 
 function Calendar() {
   const [event_data, set_event_data] = useState([]);
   const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
+  const [epopup, setePopup] = useState({open: false, title: "", message: "", callback: false});
   const [date, setDate] = useState("");
+  const [event_id, setId] = useState("")
   useEffect(()=>{
     async function readEvent() {
       //const url = "http://localhost:1323/events/all";
@@ -28,16 +31,31 @@ function Calendar() {
     });
   }
 
+  const closeePopup = () => {
+    setePopup({
+      open: false
+    });
+  }
+
   return (
     <>
     <Popup date = {date} open = {popup.open} close={closePopup} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
+    <Eopup id = {event_id} open = {epopup.open} close={closeePopup} message = {epopup.message} title = {epopup.title}/>
     <FullCalendar
     plugins={[dayGridPlugin, interactionPlugin]}
     editable
     selectable
     displayEventTime={false}
     contentHeight={600}
-    eventClick={handleEventClick}
+    eventClick={function(info){
+      setId(info.event.id);
+      setePopup({
+        open: true,
+        title: `${info.event.title}`,
+        message: `${info.event.display}`
+      });
+      return;
+    }}
     dateClick={function(info){
       setDate(info.date);
       setPopup({
@@ -72,7 +90,7 @@ function Calendar() {
   </>
   )
 }
-
+/*
 function handleEventClick(info) { // bind with an arrow function
   //alert(info.event.title + '\n' + info.event.display);
   // change the border color just for fun
@@ -87,5 +105,5 @@ function handleEventClick(info) { // bind with an arrow function
     .then(res => {window.location.href = "/"});
   }
 }
-
+*/
 export default Calendar;
