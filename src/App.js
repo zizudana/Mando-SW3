@@ -16,7 +16,8 @@ function Calendar() {
   useEffect(()=>{
     async function readEvent() {
       //const url = "http://localhost:1323/events/all";
-      const url = "https://shrouded-headland-42492.herokuapp.com/events/all"
+      //const url = "https://shrouded-headland-42492.herokuapp.com/events/all"
+      const url = "https://mando-zizudana.koyeb.app/events/all"
       const response = await axios.get(url);
       set_event_data(response.data.event_arr);
       console.log("성공");
@@ -38,9 +39,10 @@ function Calendar() {
   }
 
   return (
-    <>
+    <body>
     <Popup date = {date} open = {popup.open} close={closePopup} setPopup = {setPopup} message = {popup.message} title = {popup.title} callback = {popup.callback}/>
     <Eopup id = {event_id} open = {epopup.open} close={closeePopup} message = {epopup.message} title = {epopup.title}/>
+    <p className='notice'>*탑승자는 동승자 포함 함께 이동하는 인원 전체 입력해주세요*</p>
     <FullCalendar
     plugins={[dayGridPlugin, interactionPlugin]}
     editable
@@ -85,9 +87,10 @@ function Calendar() {
 }
     headerToolbar={{left: '',
     center: 'prev title next',
-    right: 'today'}}
+    right: ''}}
   />
-  </>
+  <footer>Contact : daeun.kim <br/> zizudana32@gmail.com</footer>
+  </body>
   )
 }
 /*

@@ -13,7 +13,8 @@ function Eopup({id, open, close, setPopup, message, title, callback}) {
     {
       axios
       //.delete(`http://localhost:1323/events/${id}`)
-      .delete(`https://shrouded-headland-42492.herokuapp.com/events/${id}`)
+      //.delete(`https://shrouded-headland-42492.herokuapp.com/events/${id}`)
+      .delete(`https://mando-zizudana.koyeb.app/events/${id}`)
       .then(res => {window.location.href = "/"});
     }
   }
